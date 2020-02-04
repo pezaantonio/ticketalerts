@@ -17,6 +17,7 @@ isRepeating = True
 # Functions #
 def webCheck():
     global firstCheck
+    print("Conducting first check\n")
     # This first reference is opening the connection to the disney website and grabbing the page
     disneyWebsiteClient = uReq(disneyUrl)
     # This second function is reading it
@@ -33,10 +34,11 @@ def webCheck():
 
     firstCheck = disneyPageSoup.find("div", {"id": "heroLazyLoading"})
 
-    print(firstCheck)
+    print("First check complete\nFirst check saved")
 
 def updateWebCheck():
     global secondCheck
+    print("\nConducting second check\n")
     # This first reference is opening the connection to the disney website and grabbing the page
     disneyWebsiteClient = uReq(disneyUrl)
     # This second function is reading it
@@ -53,7 +55,7 @@ def updateWebCheck():
 
     secondCheck = disneyPageSoup.find("div", {"id": "heroLazyLoading"})
 
-    print(secondCheck)
+    print("Second check complete\nSecond check saved\n")
 
 def sendEmail():
     global disneyUrl
@@ -91,7 +93,7 @@ def sendEmail():
 webCheck()
 while isRepeating:
     updateWebCheck()
-
+    print("Checking pages...")
     if firstCheck == secondCheck:
         print("Checking again in 15 minutes")
         time.sleep(900)
