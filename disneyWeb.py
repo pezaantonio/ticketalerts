@@ -25,13 +25,10 @@ def webCheck():
     # This third function is closing the connection when I'm done
     disneyWebsiteClient.close()
 
-    disneyWebsiteClientSecondAttempt = uReq(disneyUrl)
-    secondPageHTML = disneyWebsiteClientSecondAttempt.read()
-    disneyWebsiteClientSecondAttempt.close()
-
     # This is now storing the information from pageHTML into a disneyPageSoup and parsing using the html parser
     disneyPageSoup = soup(pageHTML, "html.parser")
 
+    # disneyPageSoup.find is looking for divs in the html and returning the "id"  for everything in that div
     firstCheck = disneyPageSoup.find("div", {"id": "heroLazyLoading"})
 
     print("First check complete\nFirst check saved")
@@ -40,20 +37,17 @@ def updateWebCheck():
     global secondCheck
     print("\nConducting second check\n")
     # This first reference is opening the connection to the disney website and grabbing the page
-    disneyWebsiteClient = uReq(disneyUrl)
-    # This second function is reading it
-    pageHTML = disneyWebsiteClient.read()
-    # This third function is closing the connection when I'm done
-    disneyWebsiteClient.close()
-
     disneyWebsiteClientSecondAttempt = uReq(disneyUrl)
+    # This second function is reading it
     secondPageHTML = disneyWebsiteClientSecondAttempt.read()
+    # This third function is closing the connection when I'm done
     disneyWebsiteClientSecondAttempt.close()
 
     # This is now storing the information from pageHTML into a disneyPageSoup and parsing using the html parser
-    disneyPageSoup = soup(pageHTML, "html.parser")
+    disneyPageSoupSecondCheck = soup(secondPageHTML, "html.parser")
 
-    secondCheck = disneyPageSoup.find("div", {"id": "heroLazyLoading"})
+    # disneyPageSoup.find is looking for divs in the html and returning the "id"  for everything in that div
+    secondCheck = disneyPageSoupSecondCheck.find("div", {"id": "heroLazyLoading"})
 
     print("Second check complete\nSecond check saved\n")
 
