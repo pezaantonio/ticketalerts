@@ -13,6 +13,7 @@ from urllib.request import urlopen as uReq
 # Global Variables #
 disneyUrl = "https://disneyland.disney.go.com/events-tours/after-dark/?ef_id=Cj0KCQiAvc_xBRCYARIsAC5QT9mEKZQsw_mSfXcLzKOzoq2-Xp4jr5mRaohcdxEWLer0JEgT512UGWQaAjfqEALw_wcB:G:s&s_kwcid=AL!5054!3!398544259080!e!!g!!disneyland%20after%20dark%20tickets&CMP=KNC-FY20_DLR_ACT_LOC_L365AB_SCP_DLAD_Events_EXACT|G|5202059.DL.AM.01.02|MOK33LW|BR|398544259080&keyword_id=aud-687740961259:kwd-432464433963|dc|disneyland%20after%20dark%20tickets|398544259080|e|5054:3|&gclid=Cj0KCQiAvc_xBRCYARIsAC5QT9mEKZQsw_mSfXcLzKOzoq2-Xp4jr5mRaohcdxEWLer0JEgT512UGWQaAjfqEALw_wcB"
 isRepeating = True
+x = 0;
 
 # Functions #
 def webCheck():
@@ -83,6 +84,12 @@ def sendEmail():
 
     print("email sent")
 
+def checkCounter():
+    global x
+    x += 1
+    countMessage = "\nTimes checked: " + str(x)
+    print(countMessage)
+
 # Main Function #
 webCheck()
 while isRepeating:
@@ -90,6 +97,7 @@ while isRepeating:
     print("Checking pages...")
     if firstCheck == secondCheck:
         print("Checking again in 15 minutes")
+        checkCounter()
         time.sleep(900)
     else:
         sendEmail()
