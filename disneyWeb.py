@@ -11,9 +11,9 @@ from bs4 import BeautifulSoup as soup
 from urllib.request import urlopen as uReq
 
 # Global Variables #
-disneyUrl = "https://disneyland.disney.go.com/events-tours/after-dark/?ef_id=Cj0KCQiAvc_xBRCYARIsAC5QT9mEKZQsw_mSfXcLzKOzoq2-Xp4jr5mRaohcdxEWLer0JEgT512UGWQaAjfqEALw_wcB:G:s&s_kwcid=AL!5054!3!398544259080!e!!g!!disneyland%20after%20dark%20tickets&CMP=KNC-FY20_DLR_ACT_LOC_L365AB_SCP_DLAD_Events_EXACT|G|5202059.DL.AM.01.02|MOK33LW|BR|398544259080&keyword_id=aud-687740961259:kwd-432464433963|dc|disneyland%20after%20dark%20tickets|398544259080|e|5054:3|&gclid=Cj0KCQiAvc_xBRCYARIsAC5QT9mEKZQsw_mSfXcLzKOzoq2-Xp4jr5mRaohcdxEWLer0JEgT512UGWQaAjfqEALw_wcB"
+disneyUrl = "https://disneyland.disney.go.com/events-tours/disneyland/after-dark-star-wars-nite/"
 isRepeating = True
-x = 0;
+x = 0
 
 # Functions #
 def webCheck():
@@ -30,9 +30,11 @@ def webCheck():
     disneyPageSoup = soup(pageHTML, "html.parser")
 
     # disneyPageSoup.find is looking for divs in the html and returning the "id"  for everything in that div
-    firstCheck = disneyPageSoup.find("div", {"id": "heroLazyLoading"})
+    firstCheck = disneyPageSoup.find("h2")
 
     print("First check complete\nFirst check saved")
+
+    print(firstCheck)
 
 def updateWebCheck():
     global secondCheck
@@ -48,7 +50,7 @@ def updateWebCheck():
     disneyPageSoupSecondCheck = soup(secondPageHTML, "html.parser")
 
     # disneyPageSoup.find is looking for divs in the html and returning the "id"  for everything in that div
-    secondCheck = disneyPageSoupSecondCheck.find("div", {"id": "heroLazyLoading"})
+    secondCheck = disneyPageSoupSecondCheck.find("h2")
 
     print("Second check complete\nSecond check saved\n")
 
@@ -102,5 +104,3 @@ while isRepeating:
     else:
         sendEmail()
         isRepeating = False
-
-
