@@ -34,8 +34,6 @@ def webCheck():
 
     print("First check complete\nFirst check saved")
 
-    print(firstCheck)
-
 def updateWebCheck():
     global secondCheck
     print("\nConducting second check\n")
